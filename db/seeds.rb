@@ -1,28 +1,14 @@
-firstpost = Post.create!(title: "Test Post", content: "bloop bloop")
-monkey = Post.create!(title: "Monkey Post", content: "ee ee oo oo")
+firstpost = Survey.create!(title: "Test Survey")
+monkey = Survey.create!(title: "Monkey Post")
 
-Tag.create!(name: "Demo Tag 1")
-Tag.create!(name: "Demo Tag 2")
-Tag.create!(name: "Demo Tag 3")
+q1 = firstpost.questions.create!(question_text: "The answer is A")
+q2 = firstpost.questions.create!(question_text: "The answer is B")
+q3 = firstpost.questions.create!(question_text: "The answer is Dr. Who")
 
-monkey.tags << Tag.find(1)
-monkey.tags << Tag.find(2)
-monkey.tags << Tag.find(3)
+[q1,q2,q3].each do |question|
+  [ "first answer", "answer b", "Dr. Who", "Glen" ].each do |text|
+    question.choices.create( choice_text: text )
+  end
+end
 
-firstpost.tags << Tag.find(1)
-firstpost.tags << Tag.find(3)
-
-
-
-
-
-# (1..5).each do |index|
-#   aTag = Tag.create!(name:  "Demo Tag #{index}")
-#   aTag.posts = Post.first
-# end
-
-
-# monkey.tags << Tag.find(1)
-# monkey.tags << Tag.find(2)
-# monkey.tags << Tag.create!(name: "Demo Tag 6")
 
