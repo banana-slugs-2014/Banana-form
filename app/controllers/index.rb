@@ -12,7 +12,7 @@ get '/surveys' do
   erb :surveys
 end
 
-post '/surveys'
+post '/surveys' do
   # create a new survey
   # this will update the survey table
 end
@@ -22,11 +22,11 @@ get '/surveys/new' do
   erb :create
 end
 
-get '/question/new'
+get '/question/new' do
   # keep track of the survery # in some way
 end
 
-post '/question/:surveyid'
+post '/question/:surveyid' do
 
 end
 
