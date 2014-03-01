@@ -1,32 +1,41 @@
-# NOTE / speak up if you see anything wrong in these routes
-
 get '/' do
 
   erb :index
 end
 
 get '/surveys' do
-  # QUESTION - go to erb to list all surveys? or list all by user?
+
 
   @surveys = Survey.all
   erb :surveys
 end
 
+get '/surveys/:id' do
+  @survey = Survey.find( params[:id] )
+  @question = @survey.questions.includes(:choices)
+  erb :survey_overview
+end
+
 post '/surveys' do
-  # create a new survey
-  # this will update the survey table
+  id = Survey.create!(title: params[:title]).id
+  redirect "/questions/#{id}/new"
 end
 
 get '/surveys/new' do
-  # go to erb to create a new survey
   erb :create
 end
 
-get '/question/new' do
-  # keep track of the survery # in some way
+get '/questions/:id/new' do
+  @survey_id = params[:id]
+  erb :create_question
 end
 
-post '/question/:surveyid' do
-
+post '/questions/:survey_id' do
+  @question = Question.create!(survey_id: params[:survey_id], question_text: params[:question_text])
+  @question.choices.create(choice_text: params[:choice_1])
+  @question.choices.create(choice_text: params[:choice_2])
+  @question.choices.create(choice_text: params[:choice_3])
+  @question.choices.create(choice_text: params[:choice_4])
+  redirect "/questions/#{params[:survey_id]}/new"
 end
 
