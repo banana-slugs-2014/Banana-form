@@ -7,21 +7,18 @@ $(document).ready(function() {
       type: 'POST',
       url: '/surveys',
       data: $('form').serialize(),
-      dataType: 'json',
       success: function(data){
-        console.log("am i doing anything?");
+        console.log("working");
+        // $('').replaceWith( data )
+        // try ^
         // $('question-container').html(data);
       },
-      failure: function(data){
-        console.log("yoyoyo")
+      error: function(data){
+        console.log("notworking")
       }
-      // .failure( function(){
-      //   console.log("I am failing boohoo.");
-      // }),
-
      });
   });
-
-
-
 });
+
+// Ajax datatype
+// error if response not json
