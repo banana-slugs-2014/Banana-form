@@ -1,10 +1,13 @@
 <div class="container">
   <form name="input" action="/questions/<%= @survey.id %>" method="post">
-    Question: <input type="text" name="question_text">
-    A: <input type="text" name="choice_1">
-    B: <input type="text" name="choice_2">
-    C: <input type="text" name="choice_3">
-    D: <input type="text" name="choice_4">
+    <p>Question: </p>
+    <input type="text" name="question_text"><br>
+    <p>Possible Choices: </p>
+    A: <input type="text" name="choice_1"><br>
+    B: <input type="text" name="choice_2"><br>
+    C: <input type="text" name="choice_3"><br>
+    D: <input type="text" name="choice_4"><br>
     <input type="submit" value="Submit">
+    <button><a href="/" class='home'>Home</a></button>
   </form>
 </div>
