@@ -10,12 +10,6 @@ get '/surveys' do
   erb :surveys
 end
 
-get '/surveys/:id' do
-  @survey = Survey.find( params[:id] )
-  @question = @survey.questions.includes(:choices)
-  erb :survey_overview
-end
-
 post '/surveys' do
   id = Survey.create!(title: params[:title]).id
   redirect "/questions/#{id}/new"
@@ -23,6 +17,12 @@ end
 
 get '/surveys/new' do
   erb :create
+end
+
+get '/surveys/:id' do
+  @survey = Survey.find( params[:id] )
+  @question = @survey.questions.includes(:choices)
+  erb :survey_overview
 end
 
 get '/questions/:id/new' do
