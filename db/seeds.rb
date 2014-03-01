@@ -1,6 +1,14 @@
 #change to password
-bob = User.create(username: "bob", password_hash: "123")
-tom = User.create(username: "tom", password_hash: "123")
+bob = User.create(username: "bob", password: "123")
+# bob = User.new()
+# bob.username = 'bob'
+# bob.password = '123'
+# bob.save
+tom = User.create(username: "tom", password: "123")
+# tom = User.new()
+# tom.username = 'tom'
+# tom.password = '123'
+# tom.save
 
 firstpost = bob.surveys.create(title: "Test Survey")
 monkey = bob.surveys.create(title: "Monkey Post")
