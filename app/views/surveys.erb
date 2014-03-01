@@ -1,6 +1,6 @@
 <div class="container">
   <h2>All Surveys:</h2>
   <% @surveys.each do |survey| %>
-    <li><a href="/surveys/<%= survey.id %>"><%= survey.title %></a></li><br>
+    <li><a href="/surveys/<%= survey.id %>"><%= survey.title %></a></li>
   <% end %>
 </div>
