@@ -3,7 +3,7 @@
     $.ajax({
 
       type: 'POST',
-      url: '/survey',
+      url: '/surveys',
       data: $('form').serialize(),
       dataType: 'json',
       success: function(data){
@@ -13,3 +13,5 @@
 
 
   })
+
+  // does document ready apply to all the pages or just index?

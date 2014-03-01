@@ -12,7 +12,9 @@ end
 
 post '/surveys' do
   id = Survey.create!(title: params[:title]).id
-  redirect "/questions/#{id}/new"
+  p params
+  # redirect "/questions/#{id}/new"
+  "<p>hello</p>"
 end
 
 get '/surveys/new' do

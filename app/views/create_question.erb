@@ -1,5 +1,6 @@
 <div class="container">
-  <form name="input" action="/questions/<%= @survey_id %>" method="post">
+    <div id="question-contaianer">
+  <form id="create-question" name="input" action="/questions/<%= @survey_id %>" method="post">
     <p>Question: </p>
     <input type="text" name="question_text"><br>
     <p>Possible Choices: </p>
@@ -10,4 +11,5 @@
     <input type="submit" value="Submit">
     <button><a href="/" class='home'>Home</a></button>
   </form>
+</div>
 </div>
