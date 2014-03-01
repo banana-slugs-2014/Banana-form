@@ -7,7 +7,7 @@ post '/login' do
   user = User.find_by_username(params[:username])
   if user.password== params[:password]
     session[:user_id] = user.id
-    redirect '/hello'
+    redirect '/'
   else
     puts 'not user found'
     redirect '/login'
