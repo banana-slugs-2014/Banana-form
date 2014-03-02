@@ -1,11 +1,8 @@
 get '/' do
-
   erb :index
 end
 
 get '/surveys' do
-
-
   @surveys = Survey.all
   erb :surveys
 end
@@ -25,6 +22,23 @@ get '/surveys/:id' do
   @question = @survey.questions.includes(:choices)
   erb :survey_overview
 end
+
+
+get '/surveys/take/:id' do
+  @survey = Survey.find( params[:id] )
+  @question = @survey.questions.includes(:choices)
+  erb :take_survey
+end
+
+post '/surveys/take' do
+  user = User.find(session[:user_id])
+  params.each_value do |value|
+    Response.create( choice_id: value, user_id: user.id)
+  end
+
+  redirect '/'
+end
+
 
 get '/questions/:id/new' do
   @survey_id = params[:id]
