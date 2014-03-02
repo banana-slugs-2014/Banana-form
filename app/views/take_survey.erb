@@ -1,0 +1,30 @@
+
+<div class="container">
+  <h2><%= @survey.title %></h2>
+  Questions:
+<ul>
+
+    <form action="">
+      <!-- will add more to form element above -->
+      <ul>
+        <% @question.each_with_index do |index, question| %>
+        <!-- for each question do: -->
+          <li>
+              <%= question.question_text %><br>
+              <!-- show question title -->
+            <ul>
+              <% question.choices.each do |choice| %>
+                <li>
+                  <!-- show radio button choice -->
+                  <input type="radio" name="<%= question.question_text %>" value="test" >
+                  <!-- value will = choice.choice_text -->
+                  <%= choice.choice_text %> <br>
+                </li>
+              <% end %>
+            </ul><br>
+          </li>
+        <% end %>
+      </ul>
+    </form>
+  </ul>
+</div>

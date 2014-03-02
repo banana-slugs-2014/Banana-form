@@ -1,11 +1,8 @@
 get '/' do
-
   erb :index
 end
 
 get '/surveys' do
-
-
   @surveys = Survey.all
   erb :surveys
 end
@@ -24,6 +21,19 @@ get '/surveys/:id' do
   @question = @survey.questions.includes(:choices)
   erb :survey_overview
 end
+
+
+get '/surveys/take/:id' do
+  @survey = Survey.find( params[:id] )
+  @question = @survey.questions.includes(:choices)
+  erb :take_survey
+end
+
+post '/surveys/take/:id' do
+# create completed_survey
+# save responses
+end
+
 
 get '/questions/:id/new' do
   @survey_id = params[:id]
