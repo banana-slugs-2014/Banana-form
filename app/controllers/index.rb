@@ -12,9 +12,8 @@ end
 
 post '/surveys' do
   id = Survey.create!(title: params[:title]).id
-  p params
-  # redirect "/questions/#{id}/new"
-  "<p>hello</p>"
+ redirect "/questions/#{id}/new"
+  # "<p>hello</p>"
 end
 
 get '/surveys/new' do
@@ -29,7 +28,7 @@ end
 
 get '/questions/:id/new' do
   @survey_id = params[:id]
-  erb :create_question
+  erb :create_question, layout: false
 end
 
 post '/questions/:survey_id' do
@@ -38,6 +37,7 @@ post '/questions/:survey_id' do
   @question.choices.create(choice_text: params[:choice_2])
   @question.choices.create(choice_text: params[:choice_3])
   @question.choices.create(choice_text: params[:choice_4])
+  p params
   redirect "/questions/#{params[:survey_id]}/new"
 end
 
