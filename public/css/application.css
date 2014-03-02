@@ -19,6 +19,10 @@ th {
   text-align: left;
 }
 
+ul {
+  list-style-type: none;
+  padding:0; margin:0;
+}
 
 .question-button {
   margin: 5px 40px;

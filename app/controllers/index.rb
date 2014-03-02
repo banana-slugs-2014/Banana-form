@@ -29,9 +29,13 @@ get '/surveys/take/:id' do
   erb :take_survey
 end
 
-post '/surveys/take/:id' do
-# create completed_survey
-# save responses
+post '/surveys/take' do
+  user = User.find(session[:user_id])
+  params.each_value do |value|
+    Response.create( choice_id: value, user_id: user.id)
+  end
+
+  redirect '/'
 end
 
 
