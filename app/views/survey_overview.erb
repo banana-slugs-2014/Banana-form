@@ -1,5 +1,7 @@
 <div class="container">
-  <h2><%= @survey.title %>:</h2>
+  <h2><%= @survey.title %></h2>
+  <a href="#">Take this survey!</a><br>
+  Questions:
   <ul>
     <% @question.each do |question| %>
       <li>
