@@ -1,7 +1,42 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  $('#create-survey').submit(function(event){
+    event.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '/surveys',
+      data: $('#create-survey').serialize(),
+      success: function(response){
+        new QuestionView(response).render();
+      },
+      error: function(data){
+        console.log("notworking")
+      }
+     });
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  });
+
+  function QuestionView (form){
+    this.form = form
+  };
+
+  QuestionView.prototype = {
+    render: function(){
+      $('.wrapper').html(this.form);
+      this.attach();
+    },
+    attach: function(){
+      var questionView = this;
+      $('#create-question').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+          type: 'POST',
+          url: '/questions/' + $('.survey_id').data("survey-id"),
+          data: $('#create-question').serialize(),
+          success: function(){
+            questionView.render();
+          },
+        })
+      });
+    }
+  };
 });
