@@ -1,8 +1,11 @@
 <div class="container">
   <h2>Surveys</h2>
   <% @surveys.each do |survey| %>
-    <li><strong><a href="/surveys/<%= survey.id %>"><%= survey.title %></strong></a></li>
+    <li><strong><a href="/surveys/<%= survey.id %>"> <%= survey.title %></strong></a></li>
   <% end %>
-  Click on a survey to see the <br>
-  questions and to take the survey.
+  <p>Click on a survey to see the <br>
+  questions and to take the survey.</p>
+  <% @my_surveys.each do |survey| %>
+    <li><strong><a href="/stats/<%= survey.id %>"><%= survey.title %> results</strong></a></li>
+  <% end %>
 </div>

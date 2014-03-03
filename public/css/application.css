@@ -82,3 +82,14 @@ ul {
 .nav ul li a:hover:before {
   width: 100%;
 }
+
+table {
+  width: 80%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td .percent {
+  text-align: right;
+}
