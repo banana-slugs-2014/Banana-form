@@ -1,0 +1,27 @@
+<div class="container">
+  <h2><%= @survey.title %> Results</h2>
+  <ul>
+    <% @question.each do |question| %>
+      <li>
+        <%= question.question_text %><br>
+        <ul>
+          <% question.choices.each do |choice| %>
+            <li>
+              <table table style="width:300px">
+                <tr>
+                  <% num_of_response = choice.responses.count %>
+                  <% percent = question.percentage(num_of_response) %>
+                  <td><%= num_of_response %></td>
+                  <td><%= choice.choice_text %></td>
+                  <td><%= percent %>%</td>
+                </tr>
+              </table> 
+            </li>
+          <% end %>
+        </ul><br>
+      </li>
+    <% end %>
+
+  </ul>
+
+</div>

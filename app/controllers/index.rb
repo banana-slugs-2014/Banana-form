@@ -4,13 +4,13 @@ end
 
 get '/surveys' do
   @surveys = Survey.all
+  @my_surveys = current_user_surveys
   erb :surveys
 end
 
 post '/surveys' do
   id = Survey.create!(title: params[:title]).id
   redirect "/questions/#{id}/new"
-  # "<p>hello</p>"
 end
 
 get '/surveys/new' do
@@ -19,6 +19,12 @@ get '/surveys/new' do
   else
     redirect "/login"
   end
+end
+
+get '/stats/:id' do
+  @survey = Survey.find(params[:id])
+  @question = @survey.questions.includes(choices: :responses)
+  erb :history
 end
 
 get '/surveys/:id' do
@@ -63,3 +69,4 @@ post '/questions/:survey_id' do
   @question.choices.create(choice_text: params[:choice_3])
   @question.choices.create(choice_text: params[:choice_4])
 end
+
