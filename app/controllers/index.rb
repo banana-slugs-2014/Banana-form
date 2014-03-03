@@ -9,7 +9,7 @@ end
 
 post '/surveys' do
   id = Survey.create!(title: params[:title]).id
- redirect "/questions/#{id}/new"
+  redirect "/questions/#{id}/new"
   # "<p>hello</p>"
 end
 
@@ -62,6 +62,4 @@ post '/questions/:survey_id' do
   @question.choices.create(choice_text: params[:choice_2])
   @question.choices.create(choice_text: params[:choice_3])
   @question.choices.create(choice_text: params[:choice_4])
-  p params
-  redirect "/questions/#{params[:survey_id]}/new"
 end

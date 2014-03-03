@@ -1,5 +1,6 @@
 <div class="container">
   <form id="create-question" name="input" action="/questions/<%= @survey_id %>" method="post">
+    <input class="survey_id" type="hidden" data-survey-id="<%= @survey_id %>">
     <p>Question: </p>
     <input type="text" name="question_text"><br>
     <p>Possible Choices: </p>

@@ -1,17 +1,12 @@
 $(document).ready(function() {
-
-  $('#create-survey').submit(function(){
+  $('#create-survey').submit(function(event){
     event.preventDefault();
-
     $.ajax({
       type: 'POST',
       url: '/surveys',
-      data: $('form').serialize(),
+      data: $('#create-survey').serialize(),
       success: function(response){
-        debugger;
-        $('.wrapper').html(response);
-        questionView = new QuestionView(response);
-
+        new QuestionView(response).render();
       },
       error: function(data){
         console.log("notworking")
@@ -24,30 +19,24 @@ $(document).ready(function() {
     this.form = form
   };
 
-   function questionPresenter (){
-    $('#create-question').on('click', 'document', function(){
-    event.preventDefault();
-
-    $.ajax({
-      type: 'POST',
-      url: '/questions/:survey_id',
-      data: $('form').serialize(),
-      success: function(response){
-        $('.wrapper').html(response);
-        console.log("working");
-      },
-      error: function(data){
-        console.log("notworking")
-      }
-     });
-
-  });
-};
-
-
-
-
+  QuestionView.prototype = {
+    render: function(){
+      $('.wrapper').html(this.form);
+      this.attach();
+    },
+    attach: function(){
+      var questionView = this;
+      $('#create-question').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+          type: 'POST',
+          url: '/questions/' + $('.survey_id').data("survey-id"),
+          data: $('#create-question').serialize(),
+          success: function(){
+            questionView.render();
+          },
+        })
+      });
+    }
+  };
 });
-
-// Ajax datatype
-// error if response not json
