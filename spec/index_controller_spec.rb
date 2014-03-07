@@ -20,10 +20,17 @@ describe "surveys" do
     expect(last_response.body).to include("Test Survey")
   end
 
-  it 'should render the surveys page'
-  # get '/surveys' do
-  it 'should create a new survey'
-  # post '/surveys' do
+  it 'should render the surveys page' do
+    get '/surveys'
+    expect(last_response.body).to include("Test Survey")
+  end
+
+  it 'should create a new survey' do
+    expect { post '/surveys', {
+      title: "Test Test"
+    } }.to change(Survey, :count).by(1)
+  end
+
   it 'should provide a new form to create a survey'
   # get '/surveys/new' do
   it 'should show an overview of a certain survey'
