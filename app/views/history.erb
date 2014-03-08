@@ -10,12 +10,16 @@
               <table table style="width:300px">
                 <tr>
                   <% num_of_response = choice.responses.count %>
-                  <% percent = question.percentage(num_of_response) %>
-                  <td><%= num_of_response %></td>
-                  <td><%= choice.choice_text %></td>
-                  <td><%= percent %>%</td>
+                  <% if num_of_response > 0 %>
+                    <% percent = question.percentage(num_of_response) %>
+                    <td><%= num_of_response %></td>
+                    <td><%= choice.choice_text %></td>
+                    <td><%= percent %>%</td>
+                  <% else %>
+                    <p>No responses</p>
+                  <% end %>
                 </tr>
-              </table> 
+              </table>
             </li>
           <% end %>
         </ul><br>
